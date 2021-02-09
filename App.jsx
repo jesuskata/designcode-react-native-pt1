@@ -50,6 +50,7 @@ export default function App() {
           <ScrollView>
             {courses.map(course => (
               <Course
+                key={course.image}
                 image={course.image}
                 logo={course.logo}
                 subtitle={course.subtitle}
