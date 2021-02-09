@@ -6,17 +6,19 @@ import { ScrollView, SafeAreaView } from 'react-native';
 import { Card } from './src/components/Card';
 import { Logo } from './src/components/Logo';
 import { TopBar } from './src/components/TopBar';
+import { Course } from './src/components/Course';
+import { Menu } from './src/components/Menu';
 
 // Styled Components
 import { Container, Subtitle } from './styles';
 
 // Data
 import { logos, cards, courses } from './src/data';
-import { Course } from './src/components/Course';
 
 export default function App() {
   return (
     <Container>
+      <Menu />
       <SafeAreaView>
         <ScrollView>
           <TopBar />
