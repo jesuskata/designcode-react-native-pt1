@@ -1,3 +1,4 @@
+// Action Types
 import { actionTypes } from '../actions/types';
 
 const menuInitialState = {

@@ -6,9 +6,11 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
 // Reducers
 import toggleMenuReducerFn from './reducers/toggleMenu.reducer';
+import fetchUserDataReducerFn from './reducers/fetchUserData.reducer';
 
 const rootReducer = combineReducers({
-  isOpen: toggleMenuReducerFn
+  isOpen: toggleMenuReducerFn,
+  userData: fetchUserDataReducerFn
 });
 
 // Middleware: Redux Persist Config
