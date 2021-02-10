@@ -21,6 +21,7 @@ import { items } from '../../data';
 export const Menu = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector(state => state.isOpen.isOpen);
+  const { data } = useSelector(state => state.userData);
   const screenHeight = Dimensions.get('window').height;
   const top = useRef(new Animated.Value(screenHeight)).current;
 
@@ -46,8 +47,8 @@ export const Menu = () => {
     <AnimatedContainer style={{ top }}>
       <Cover>
         <Image source={require('../../../assets/background2.jpg')} />
-        <Title>Jesus</Title>
-        <Subtitle>Software Developer at Zionsoft</Subtitle>
+        <Title>{data.name}</Title>
+        <Subtitle>{data.position}</Subtitle>
       </Cover>
       <TouchableOpacity
         onPress={toggleMenu}

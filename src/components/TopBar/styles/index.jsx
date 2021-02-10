@@ -7,16 +7,6 @@ export const TitleBar = styled.View`
   padding-left: 20px;
 `;
 
-export const Avatar = styled.Image`
-  width: 44px;
-  height: 44px;
-  background: black;
-  border-radius: 22px;
-  position: absolute;
-  top: 0;
-  left: 0;
-`;
-
 export const TitleWrapper = styled.View`
   margin-left: 60px;
 `;

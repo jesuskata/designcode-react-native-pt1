@@ -2,7 +2,7 @@
 // Dependencies
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { TouchableOpacity } from 'react-native';
 
 // Redux Actions
@@ -10,14 +10,16 @@ import { toggleMenuAction } from '../../store/actions/toggleMenu.action';
 
 // Components
 import { NotificationIcon } from '../Icons';
+import { Avatar } from '../Avatar';
 
 // Styled Components
 import {
-  TitleBar, Avatar, TitleWrapper, Title, Name
+  TitleBar, TitleWrapper, Title, Name
 } from './styles';
 
 export const TopBar = () => {
   const dispatch = useDispatch();
+  const { data } = useSelector(state => state.userData);
   const openMenu = () => {
     dispatch(toggleMenuAction(true));
   };
@@ -25,11 +27,11 @@ export const TopBar = () => {
   return (
     <TitleBar>
       <TouchableOpacity onPress={openMenu}>
-        <Avatar source={require('../../../assets/avatar-default.jpg')} />
+        <Avatar photo={data.photo} />
       </TouchableOpacity>
       <TitleWrapper>
         <Title>Welcome back,</Title>
-        <Name>Jesus</Name>
+        <Name>{data.name}</Name>
       </TitleWrapper>
       <NotificationIcon
         style={{
