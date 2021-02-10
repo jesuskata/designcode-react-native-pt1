@@ -8,6 +8,8 @@ export const Container = styled.View`
   width: 100%;
   height: 100%;
   z-index: 1;
+  border-radius: 10px;
+  overflow: hidden;
 `;
 
 export const AnimatedContainer = Animated.createAnimatedComponent(Container);
