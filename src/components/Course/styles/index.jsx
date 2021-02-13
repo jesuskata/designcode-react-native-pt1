@@ -2,7 +2,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.View`
-  width: 335px;
+  /* width: 335px; */
+  width: 95%;
   height: 335px;
   border-radius: 14px;
   background: white;
