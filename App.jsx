@@ -7,12 +7,12 @@ import { Provider } from 'react-redux';
 import { appStore, persistor } from './src/store';
 
 // Components
-import { HomeScreen } from './src/screens/HomeScreen';
+import { AppNavigatorContainer } from './src/navigator/AppNavigator';
 
 const App = () => (
   <Provider store={appStore}>
     <PersistGate loading={null} persistor={persistor}>
-      <HomeScreen />
+      <AppNavigatorContainer />
     </PersistGate>
   </Provider>
 );

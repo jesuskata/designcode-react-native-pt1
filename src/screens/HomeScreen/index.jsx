@@ -1,7 +1,8 @@
 // Dependencies
 import React, { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import {
-  ScrollView, SafeAreaView, Animated, Easing, StatusBar
+  ScrollView, SafeAreaView, Animated, Easing, StatusBar, TouchableOpacity
 } from 'react-native';
 import { useSelector } from 'react-redux';
 
@@ -18,7 +19,7 @@ import { RootView, AnimatedContainer, Subtitle } from './styles';
 // Data
 import { logos, cards, courses } from '../../data';
 
-export const HomeScreen = () => {
+export const HomeScreen = ({ navigation }) => {
   const isOpen = useSelector(state => state.isOpen.isOpen);
   const scale = useRef(new Animated.Value(1)).current;
   const opacity = useRef(new Animated.Value(1)).current;
@@ -57,6 +58,10 @@ export const HomeScreen = () => {
     }
   };
 
+  const handleNavigation = () => {
+    navigation.push('Section');
+  };
+
   return (
     <RootView>
       <Menu />
@@ -85,14 +90,18 @@ export const HomeScreen = () => {
             <Subtitle>Continue Learning</Subtitle>
             <ScrollView horizontal style={{ paddingBottom: 30 }} showsHorizontalScrollIndicator={false}>
               {cards.map(card => (
-                <Card
+                <TouchableOpacity
                   key={card.image}
-                  image={card.image}
-                  title={card.title}
-                  logo={card.logo}
-                  caption={card.caption}
-                  subtitle={card.subtitle}
-                />
+                  onPress={handleNavigation}
+                >
+                  <Card
+                    image={card.image}
+                    title={card.title}
+                    logo={card.logo}
+                    caption={card.caption}
+                    subtitle={card.subtitle}
+                  />
+                </TouchableOpacity>
               ))}
             </ScrollView>
             <Subtitle>Popular Courses</Subtitle>
@@ -115,4 +124,8 @@ export const HomeScreen = () => {
       </AnimatedContainer>
     </RootView>
   );
+};
+
+HomeScreen.propTypes = {
+  navigation: PropTypes.objectOf(PropTypes.any)
 };
