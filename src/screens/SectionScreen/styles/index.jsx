@@ -64,3 +64,8 @@ export const Subtitle = styled.Text`
   margin-left: 5px;
   text-transform: uppercase;
 `;
+
+export const Content = styled.View`
+  height: 1000px;
+  padding: 20px;
+`;

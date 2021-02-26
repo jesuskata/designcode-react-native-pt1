@@ -114,6 +114,7 @@ export const HomeScreen = ({ navigation }) => {
                         logo={item.logo.url}
                         caption={item.caption}
                         subtitle={item.subtitle}
+                        content={item.content}
                       />
                     </TouchableOpacity>
                   ))}
