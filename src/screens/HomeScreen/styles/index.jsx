@@ -24,3 +24,14 @@ export const Subtitle = styled.Text`
   margin-top: 20px;
   text-transform: uppercase;
 `;
+
+export const Message = styled.Text`
+  margin: 20px;
+  color: #b8bece;
+  font-size: 15px;
+  font-weight: 500;
+`;
+
+export const CardsContainer = styled.View`
+  flex-direction: row;
+`;

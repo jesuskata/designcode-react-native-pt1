@@ -13,11 +13,11 @@ export const Card = ({
 }) => (
   <Container>
     <Cover>
-      <Image source={image} />
+      <Image source={{ uri: image }} />
       <Title>{title}</Title>
     </Cover>
     <Content>
-      <Logo source={logo} />
+      <Logo source={{ uri: logo }} />
       <TextWrapper>
         <Caption>{caption}</Caption>
         <Subtitle>{subtitle}</Subtitle>
@@ -27,9 +27,9 @@ export const Card = ({
 );
 
 Card.propTypes = {
-  image: PropTypes.number,
+  image: PropTypes.string,
   title: PropTypes.string,
-  logo: PropTypes.number,
+  logo: PropTypes.string,
   caption: PropTypes.string,
   subtitle: PropTypes.string
 };

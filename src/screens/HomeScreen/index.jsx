@@ -5,6 +5,7 @@ import {
   ScrollView, SafeAreaView, Animated, Easing, StatusBar, TouchableOpacity
 } from 'react-native';
 import { useSelector } from 'react-redux';
+import { useQuery } from '@apollo/client';
 
 // Components
 import { Card } from '../../components/Card';
@@ -14,15 +15,22 @@ import { Course } from '../../components/Course';
 import { Menu } from '../../components/Menu';
 
 // Styled Components
-import { RootView, AnimatedContainer, Subtitle } from './styles';
+import {
+  RootView, AnimatedContainer, Subtitle, Message, CardsContainer
+} from './styles';
 
 // Data
-import { logos, cards, courses } from '../../data';
+import { logos, courses } from '../../data';
+
+// Apollo Client Queries
+import { CardsQuery } from '../../apollo/queries';
 
 export const HomeScreen = ({ navigation }) => {
   const isOpen = useSelector(state => state.isOpen.isOpen);
   const scale = useRef(new Animated.Value(1)).current;
   const opacity = useRef(new Animated.Value(1)).current;
+
+  const { loading, error, data } = useQuery(CardsQuery);
 
   useEffect(() => {
     toggleMenu();
@@ -58,8 +66,10 @@ export const HomeScreen = ({ navigation }) => {
     }
   };
 
-  const handleNavigation = () => {
-    navigation.push('Section');
+  const handleNavigation = (card) => {
+    navigation.push('Section', {
+      section: card
+    });
   };
 
   return (
@@ -89,20 +99,26 @@ export const HomeScreen = ({ navigation }) => {
             </ScrollView>
             <Subtitle>Continue Learning</Subtitle>
             <ScrollView horizontal style={{ paddingBottom: 30 }} showsHorizontalScrollIndicator={false}>
-              {cards.map(card => (
-                <TouchableOpacity
-                  key={card.image}
-                  onPress={handleNavigation}
-                >
-                  <Card
-                    image={card.image}
-                    title={card.title}
-                    logo={card.logo}
-                    caption={card.caption}
-                    subtitle={card.subtitle}
-                  />
-                </TouchableOpacity>
-              ))}
+              {loading ? (
+                <Message>Loading...</Message>
+              ) : data ? (
+                <CardsContainer>
+                  {data.cardsCollection.items.map(item => (
+                    <TouchableOpacity
+                      key={item.caption}
+                      onPress={() => handleNavigation(item)}
+                    >
+                      <Card
+                        image={item.image.url}
+                        title={item.title}
+                        logo={item.logo.url}
+                        caption={item.caption}
+                        subtitle={item.subtitle}
+                      />
+                    </TouchableOpacity>
+                  ))}
+                </CardsContainer>
+              ) : error ? <Message>Error!</Message> : null}
             </ScrollView>
             <Subtitle>Popular Courses</Subtitle>
             <ScrollView>
